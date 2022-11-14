@@ -17,6 +17,8 @@ jobs:
     steps:
     - run: echo "The ${{ github.event_name }} event triggered this step."
 
+    - run: echo "env.PUSH is ${{ env.PUSH }}"
+
     - if: ${{ env.PUSH }}
       run: echo "This step only runs when the event is a push."
 
