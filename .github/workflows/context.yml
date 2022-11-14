@@ -19,8 +19,8 @@ jobs:
 
     - run: echo "env.PUSH is ${{ env.PUSH }}"
 
-    - if: ${{ env.PUSH }}
+    - if: ${{ env.PUSH == 'true' }}
       run: echo "This step only runs when the event is a push."
 
-    - if: ${{ !env.PUSH }}
+    - if: ${{ env.PUSH != 'true' }}
       run: echo "This step only runs when the event is not a push."
