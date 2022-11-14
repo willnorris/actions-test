@@ -1,0 +1,24 @@
+name: Context test
+
+on:
+  push:
+    branches: [ 'main' ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ 'main' ]
+
+env:
+  PUSH: ${{ github.event_name == 'push' }}
+
+jobs:
+  context-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: echo "The ${{ github.event_name }} event triggered this step."
+
+    - if: ${{ env.PUSH }}
+      run: echo "This step only runs when the event is a push."
+
+    - if: ${{ !env.PUSH }}
+      run: echo "This step only runs when the event is not a push."
